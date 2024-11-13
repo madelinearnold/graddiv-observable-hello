@@ -1,4 +1,14 @@
-# Hello Framework
+# Framework - Google Cloud Integration
+
+This is a project integrating Observable Framework with Google Cloud using Google App Engine. 
+
+Several files are used for the integration, while the remaining files are part of the Hello Framework template from Observable.
+1. The deploy.sh file assists in setting up the Google Cloud project for hosting
+2. The app.yaml, main.py, and requirements.txt files are required in generating the Google App Engine app.
+
+To deploy the app you will need to install Google SDK to access to Google Cloud via the terminal. 
+
+## Hello Framework
 
 This is an [Observable Framework](https://observablehq.com/framework) project. To start the local preview server, run:
 
