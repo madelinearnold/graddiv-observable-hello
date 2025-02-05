@@ -62,9 +62,13 @@ fi
 # Set the project as the active project
 gcloud config set project "$PROJECT_NAME"
 
-# Add OWNER email as owner role for project
+# Add owner and admin emails as owner role for project
 gcloud projects add-iam-policy-binding "$PROJECT_NAME" \
   --member="user:$OWNER_EMAIL" \
+  --role="roles/owner"
+
+gcloud projects add-iam-policy-binding "$PROJECT_NAME" \
+  --member="user:$ADMIN_EMAIL" \
   --role="roles/owner"
 
 # Prompt the user to link the billing account manually
@@ -110,18 +114,23 @@ gcloud iap web add-iam-policy-binding \
 # Deploy the App Engine application
 gcloud app deploy --quiet
 
-# Grant viewing access to all domain users
-gcloud projects add-iam-policy-binding "$PROJECT_NAME" \
-  --member="domain:berkeley.edu" \
-  --role="roles/viewer" || echo "Failed to add viewer role to allAuthenticatedUsers"
-
-# Deny access to all users except the admin
+# Deny access to all google users 
 gcloud projects remove-iam-policy-binding "$PROJECT_NAME" \
   --member="allAuthenticatedUsers" \
   --role="roles/iap.httpsResourceAccessor" || echo "Failed to remove IAP access from allAuthenticatedUsers"
+
+# Grant app viewing access to admin user, owner user, and anyone from domain
 
 gcloud projects add-iam-policy-binding "$PROJECT_NAME" \
   --member="user:$ADMIN_EMAIL" \
   --role="roles/iap.httpsResourceAccessor"
 
-echo "Project $PROJECT_NAME created and configured. Only $ADMIN_EMAIL has access."
+gcloud projects add-iam-policy-binding "$PROJECT_NAME" \
+  --member="user:$OWNER_EMAIL" \
+  --role="roles/iap.httpsResourceAccessor"
+
+gcloud projects add-iam-policy-binding "$PROJECT_NAME" \
+  --member="domain:berkeley.edu" \
+  --role="roles/iap.httpsResourceAccessor" || echo "Failed to add app access role to all domain users"
+
+echo "Project $PROJECT_NAME created and configured. Only admin, owner, and domain users have access."
