@@ -8,9 +8,9 @@ fi
 
 PROJECT_NAME="$1"
 BUCKET_NAME="$PROJECT_NAME"
-ADMIN_EMAIL="dlab-admin@berkeley.edu"
-OWNER_EMAIL="aculich@berkeley.edu"
-EXISTING_PROJECT="dlab-testing-1234"
+ADMIN_EMAIL="gradresearch@berkeley.edu"
+OWNER_EMAIL="madeline_arnold@berkeley.edu"
+EXISTING_PROJECT="grad-div-framework"
 DIRECTORY="dist"
 
 # Function to check if a service is enabled
@@ -62,7 +62,7 @@ fi
 # Set the project as the active project
 gcloud config set project "$PROJECT_NAME"
 
-# Add aculich@berkeley.edu as OWNER
+# Add OWNER email as owner role for project
 gcloud projects add-iam-policy-binding "$PROJECT_NAME" \
   --member="user:$OWNER_EMAIL" \
   --role="roles/owner"
@@ -94,15 +94,11 @@ gsutil rm -r "gs://$BUCKET_NAME/" || echo "Bucket does not exist, creating a new
 gsutil mb -p "$PROJECT_NAME" "gs://$BUCKET_NAME/"
 
 # Build the project (Assumes build has already been done; skipping npm install)
-# Replace "Hello Framework" with PROJECT_NAME in HTML files
-replace_title_in_html() {
-  find "$DIRECTORY" -name "*.html" -exec sed -i '' "s/Hello Framework/$PROJECT_NAME/g" {} +
-}
-
-replace_title_in_html
 
 # Copy the build files to the bucket from the specified directory
-gsutil -m cp -r "$DIRECTORY"/* "gs://$BUCKET_NAME/"
+## note: currently I don't think the app.yaml is set up to 
+## load files from Google Cloud Storage, so below line is unnecessary
+# gsutil -m cp -r "$DIRECTORY"/* "gs://$BUCKET_NAME/"
 
 # Create an IAP access policy
 gcloud iap web enable --resource-type=app-engine
@@ -114,11 +110,12 @@ gcloud iap web add-iam-policy-binding \
 # Deploy the App Engine application
 gcloud app deploy --quiet
 
-# Deny access to all users except the admin
+# Grant viewing access to all domain users
 gcloud projects add-iam-policy-binding "$PROJECT_NAME" \
-  --member="allAuthenticatedUsers" \
+  --member="domain:berkeley.edu" \
   --role="roles/viewer" || echo "Failed to add viewer role to allAuthenticatedUsers"
 
+# Deny access to all users except the admin
 gcloud projects remove-iam-policy-binding "$PROJECT_NAME" \
   --member="allAuthenticatedUsers" \
   --role="roles/iap.httpsResourceAccessor" || echo "Failed to remove IAP access from allAuthenticatedUsers"
