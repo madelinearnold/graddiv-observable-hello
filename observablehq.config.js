@@ -33,5 +33,5 @@ export default {
   // search: true, // activate search
   // linkify: true, // convert URLs in Markdown to links
   // typographer: false, // smart quotes and other typographic improvements
-  cleanUrls: false, // drop .html from URLs
+  preserveExtension: true, // keep .html in URLs
 };
