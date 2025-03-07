@@ -3,8 +3,8 @@ toc: false
 ---
 
 <div class="hero">
-  <h1>Hello Framework</h1>
-  <h2>Welcome to your new project! Edit&nbsp;<code style="font-size: 90%;">src/index.md</code> to change this page.</h2>
+  <h1>Graduate Division Student Data Hub</h1>
+  <h2>Welcome to the Graduate Division Data Dashboards! Here you can find information on specific graduate programs, and overall trends in graduate student experiences, including by different demographic groups or topic areas. Edit&nbsp;<code style="font-size: 90%;">src/index.md</code> to change this page.</h2>
   <a href="https://observablehq.com/framework/getting-started">Get started<span style="display: inline-block; margin-left: 0.25rem;">↗︎</span></a>
 </div>
 

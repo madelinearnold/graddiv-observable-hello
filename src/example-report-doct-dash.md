@@ -1,12 +1,12 @@
 ---
-title: Example report
+title: Doctoral Program Dashboard
 ---
 
-# A brief history of space exploration
+# UC Berkeley Doctoral Program Data Dashboard
 
 This report is a brief overview of the history and current state of rocket launches and space exploration.
 
-## Background
+## Admissions
 
 The history of rocket launches dates back to ancient China, where gunpowder-filled tubes were used as primitive forms of propulsion.
 
@@ -14,7 +14,7 @@ Fast-forward to the 20th century during the Cold War era, the United States and 
 
 This led to the launch of the first artificial satellite, Sputnik 1, and the crewed moon landing by Apollo 11. As technology advanced, rocket launches became synonymous with space exploration and satellite deployment.
 
-## The Space Shuttle era
+## Enrollment
 
 ```js
 import {timeline} from "./components/timeline.js";
@@ -28,11 +28,11 @@ const events = FileAttachment("./data/events.json").json();
 timeline(events, {height: 300})
 ```
 
-### Sputnik 1 (1957)
+### Disagreggated by Student Population
 
 This was the first artificial satellite. Launched by the Soviet Union, it marked the beginning of the space age.
 
-### Apollo 11 (1969)
+### Trends over time
 
 The historic Apollo 11 mission, led by NASA, marked the first successful human landing on the Moon. Astronauts Neil Armstrong and Buzz Aldrin became the first humans to set foot on the lunar surface.
 
@@ -52,7 +52,7 @@ The Hubble Space Telescope has provided unparalleled images and data, revolution
 
 The ISS, a collaborative effort involving multiple space agencies, began construction with the launch of its first module, Zarya, in 1998. Over the following years, various modules were added, making the ISS a symbol of international cooperation in space exploration.
 
-## Commercial spaceflight
+## Entry Survey
 
 After the Space Shuttle program, a new era emerged with a shift towards commercial spaceflight.
 
@@ -60,7 +60,7 @@ Private companies like Blue Origin, founded by Jeff Bezos in 2000, and SpaceX, f
 
 SpaceX, in particular, achieved milestones like the first privately developed spacecraft to reach orbit (Dragon in 2010) and the first privately funded spacecraft to dock with the ISS (Dragon in 2012).
 
-## Recent launch activity
+## Experience Survey
 
 The proliferation of commercial space companies has driven a surge in global launch activity within the last few years.
 
@@ -68,7 +68,7 @@ SpaceX’s Falcon 9 and Falcon Heavy, along with other vehicles from companies l
 
 The advent of small satellite constellations, such as Starlink by SpaceX, has further fueled this increase in launches. The push for lunar exploration has added momentum to launch activities, with initiatives like NASA’s Artemis program and plans for crewed missions to the Moon and Mars.
 
-## Looking forward
+## Time to Degree and Degree Completion
 
 As technology continues to advance and global interest in space exploration grows, the future promises even more exciting developments in the realm of rocket launches and space travel.
 

@@ -1,10 +1,10 @@
 ---
 theme: dashboard
-title: Example dashboard
+title: Professional Program Dashboard
 toc: false
 ---
 
-# Rocket launches 🚀
+# Professional Program Data Dashboard 🚀
 
 <!-- Load and transform the data -->
 
